@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Alert, Dimensions, Button } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
@@ -14,27 +14,30 @@ export class ScanScreen extends Component {
         this.setState({ hasCameraPermission: status === 'granted' });
     }
 
-    _handleRead = result => {
-        Alert.alert(
-            "Wowie here's your message pal",
-            result,
-            [
-                {text: "OK"},
-            ]
-        );
+    _handleRead = ({ type, data }) => {
+        this.setState({ scanned: true });
+        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
     };
 
     render() {
+        const { hasCameraPermission, scanned } = this.state;
+    
+        if (hasCameraPermission === null) {
+          return <Text>Requesting for camera permission</Text>;
+        }
+        if (hasCameraPermission === false) {
+          return <Text>No access to camera</Text>;
+        }
         return (
-            <View>
+          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
             <BarCodeScanner
-                  onBarCodeRead={this._handleRead}
-                  style={{
-                    height: Dimensions.get('window').height,
-                    width: Dimensions.get('window').width,
-                  }}
-                />
-            </View>
-        )
-    }    
+              onBarCodeScanned={scanned ? undefined : this._handleRead}
+              style={StyleSheet.absoluteFillObject}
+            />
+            {scanned && (
+              <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />
+            )}
+          </View>
+        );
+      } 
 }
