@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';
-import AntDesign from "react-native-vector-icons/AntDesign"
-
-class HomeScreen extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>This is the home screen</Text>
-      </View>
-    );
-  }
-}
-
-class ProfileScreen extends Component {
-  render () {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>My name is Jacques I am a gigachad</Text>
-      </View>
-    );
-  }
-}
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { HomeScreen } from "./components/HomeScreen";
+import { ScanScreen } from "./components/ScanScreen";
+import { AnalyticsScreen } from "./components/AnalyticsScreen";
+import { ProfileScreen } from "./components/ProfileScreen";
 
 const MainNavigator = createBottomTabNavigator(
   {
     Home: {screen: HomeScreen},
+    Scan: {screen: ScanScreen},
+    Analytics: {screen: AnalyticsScreen},
     Profile: {screen: ProfileScreen},
   },
   {
@@ -39,6 +25,12 @@ const MainNavigator = createBottomTabNavigator(
         } 
         else if (routeName === 'Profile') {
           iconName = `user`;
+        }
+        else if(routeName === "Scan") {
+          iconName = "qrcode";
+        }
+        else if (routeName === "Analytics") {
+          iconName = "linechart";
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       }
