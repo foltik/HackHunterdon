@@ -39,5 +39,5 @@ export class ScanScreen extends Component {
             )}
           </View>
         );
-      } 
+    } 
 }
