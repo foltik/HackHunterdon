@@ -30,13 +30,20 @@ export class LoginScreen extends Component {
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
-                    textContentType="username"
+                    placeholderTextColor="gray"
+                    textContentType="emailAddress"
+                    autoCompleteType="email"
+                    autoCapitalize="none"
                     onChangeText={text => this.setState({ email: text })}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Password"
+                    placeholderTextColor="gray"
                     textContentType="password"
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    autoCompleteType="password"
                     onChangeText={text => this.setState({ password: text })}
                 />
                 <Button
@@ -50,13 +57,14 @@ export class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
     input: {
-      backgroundColor: 'gray',
+      backgroundColor: 'lightgray',
       width: Dimensions.get('window').width - 40,
       height: 40,
       marginHorizontal: 20,
       paddingLeft: 45,
+      marginBottom: 20,
       borderRadius: 20,
-      color: '#ffffff',
+      color: 'gray',
     },
     inputWrapper: {
       flex: 1,
