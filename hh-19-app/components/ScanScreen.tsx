@@ -20,7 +20,20 @@ export class ScanScreen extends Component {
         let foodRef = fb.firestore().collection("food").doc(data);
         foodRef.get().then((doc) => {
             if (doc.exists) {
-                alert(`'${doc.data().name}' has been added!`);
+                var date = new Date().getDate(); //Current Date
+                var month = new Date().getMonth() + 1; //Current Month
+                var year = new Date().getFullYear(); //Current Year
+                fb.firestore().collection("users").doc(uid).collection("consumed").add({
+                    name: doc.data().name,
+                    date: month + "/" + date + "/" + year,
+                })
+                .then(() => {
+                    alert(`'${doc.data().name}' has been added!`);
+                })
+                .catch(() => {
+                    alert(`'${doc.data().name}' could not be added`)
+                });
+                
             }
             else {
                 alert("Scanned code is not a food item");

@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
       left: 35,
       top: 9,
     },
-  });
+});
