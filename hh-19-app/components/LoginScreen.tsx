@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Dimensions, Image, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Image, KeyboardAvoidingView } from 'react-native';
+import { Button } from 'react-native-elements'
 import { AuthNavigator } from '../App'
 import { fb } from '../App'
 
