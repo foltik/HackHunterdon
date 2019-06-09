@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Alert, Dimensions, Button } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { fb, uid } from '../App'
 
 export class ScanScreen extends Component {
     state = {
@@ -16,7 +17,18 @@ export class ScanScreen extends Component {
 
     _handleRead = ({ type, data }) => {
         this.setState({ scanned: true });
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        let foodRef = fb.firestore().collection("food").doc(data);
+        foodRef.get().then((doc) => {
+            if (doc.exists) {
+                alert(`'${doc.data().name}' has been added!`);
+            }
+            else {
+                alert("Scanned code is not a food item");
+            }
+        })
+        .catch(() => {
+            alert("Error adding food item");
+        });
     };
 
     render() {
