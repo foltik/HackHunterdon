@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator, createAppContainer} from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { HomeScreen } from "./components/HomeScreen";
 import { ScanScreen } from "./components/ScanScreen";
 import { AnalyticsScreen } from "./components/AnalyticsScreen";
 import { ProfileScreen } from "./components/ProfileScreen";
+import { LoginScreen } from "./components/LoginScreen";
 
 const MainNavigator = createBottomTabNavigator(
   {
-    Home: {screen: HomeScreen},
-    Scan: {screen: ScanScreen},
-    Analytics: {screen: AnalyticsScreen},
-    Profile: {screen: ProfileScreen},
+    Home: { screen: HomeScreen },
+    Scan: { screen: ScanScreen },
+    Analytics: { screen: AnalyticsScreen },
+    Profile: { screen: ProfileScreen },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -22,11 +23,11 @@ const MainNavigator = createBottomTabNavigator(
         let iconName: string;
         if (routeName === 'Home') {
           iconName = 'home';
-        } 
+        }
         else if (routeName === 'Profile') {
           iconName = `user`;
         }
-        else if(routeName === "Scan") {
+        else if (routeName === "Scan") {
           iconName = "qrcode";
         }
         else if (routeName === "Analytics") {
@@ -38,7 +39,14 @@ const MainNavigator = createBottomTabNavigator(
   }
 );
 
-const App = createAppContainer(MainNavigator);
+const AuthNavigator = createSwitchNavigator(
+  {
+    Auth: LoginScreen,
+    App: MainNavigator,
+  }
+);
+
+const App = createAppContainer(AuthNavigator);
 
 export default App;
 

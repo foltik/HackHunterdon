@@ -21,23 +21,23 @@ export class ScanScreen extends Component {
 
     render() {
         const { hasCameraPermission, scanned } = this.state;
-    
+
         if (hasCameraPermission === null) {
-          return <Text>Requesting for camera permission</Text>;
+            return <Text>Requesting for camera permission</Text>;
         }
         if (hasCameraPermission === false) {
-          return <Text>No access to camera</Text>;
+            return <Text>No access to camera</Text>;
         }
         return (
-          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-            <BarCodeScanner
-              onBarCodeScanned={scanned ? undefined : this._handleRead}
-              style={StyleSheet.absoluteFillObject}
-            />
-            {scanned && (
-              <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />
-            )}
-          </View>
+            <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                <BarCodeScanner
+                    onBarCodeScanned={scanned ? undefined : this._handleRead}
+                    style={StyleSheet.absoluteFillObject}
+                />
+                {scanned && (
+                    <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />
+                )}
+            </View>
         );
-    } 
+    }
 }
