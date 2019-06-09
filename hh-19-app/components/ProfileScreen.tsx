@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { fb } from '../App'
 
 export class ProfileScreen extends Component {
     render () {

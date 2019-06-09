@@ -7,6 +7,21 @@ import { ScanScreen } from "./components/ScanScreen";
 import { AnalyticsScreen } from "./components/AnalyticsScreen";
 import { ProfileScreen } from "./components/ProfileScreen";
 import { LoginScreen } from "./components/LoginScreen";
+import * as firebase from 'firebase';
+
+// putting our firebase api key in version control lol
+const firebaseConfig = {
+  apiKey: "AIzaSyCAFoqGmYGnJSrTgVmdZksYX4jttrlWTTY",
+  authDomain: "hackhunterdon-46b25.firebaseapp.com",
+  databaseURL: "https://hackhunterdon-46b25.firebaseio.com",
+  projectId: "hackhunterdon-46b25",
+  storageBucket: "hackhunterdon-46b25.appspot.com",
+  messagingSenderId: "281804663834",
+  appId: "1:281804663834:web:5973ef7002fff5d6"
+};
+
+export let fb = firebase.initializeApp(firebaseConfig);
+//module.exports.fb = FbApp;
 
 const MainNavigator = createBottomTabNavigator(
   {
@@ -39,10 +54,10 @@ const MainNavigator = createBottomTabNavigator(
   }
 );
 
-const AuthNavigator = createSwitchNavigator(
+export const AuthNavigator = createSwitchNavigator(
   {
     Auth: LoginScreen,
-    App: MainNavigator,
+    MainApp: MainNavigator,
   }
 );
 

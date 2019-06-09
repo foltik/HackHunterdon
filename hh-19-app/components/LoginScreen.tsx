@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Dimensions } from 'react-native';
+import { AuthNavigator } from '../App'
+import { fb } from '../App'
 
 export class LoginScreen extends Component {
+    constructor(props) {
+        super(props);
+        console.log(this.props);
+    }
+
     state = {
         email: "",
         password: "",
+        login: false,
     }
 
-    _handleLogin() {
-        console.log(this.state.email);
+    handleLogin() {
+        this.setState({ login: true });
+        fb.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            this.props.navigation.navigate('MainApp');
+        })
+        .catch(error => {
+            this.setState({ login: false })
+            alert("Login failed!");
+        });
     }
 
     render() {
@@ -28,7 +44,7 @@ export class LoginScreen extends Component {
                 />
                 <Button
                     title="Login"
-                    onPress={this._handleLogin}
+                    onPress={this.handleLogin.bind(this)}
                 />
             </View>
         );
