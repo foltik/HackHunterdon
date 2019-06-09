@@ -8,6 +8,7 @@ import { AnalyticsScreen } from "./components/AnalyticsScreen";
 import { ProfileScreen } from "./components/ProfileScreen";
 import { LoginScreen } from "./components/LoginScreen";
 import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 // putting our firebase api key in version control lol
 const firebaseConfig = {

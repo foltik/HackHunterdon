@@ -27,7 +27,7 @@ export class ScanScreen extends Component {
             }
         })
         .catch(() => {
-            alert("Error adding food item");
+            alert(`Error adding food item from ${data}`);
         });
     };
 

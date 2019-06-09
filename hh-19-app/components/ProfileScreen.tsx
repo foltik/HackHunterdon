@@ -4,7 +4,7 @@ import { fb, uid } from '../App'
 
 export class ProfileScreen extends Component {
     render() {
-        console.log(uid);
+        console.log(fb);
         let userRef = fb.firestore().collection("users").doc(uid);
         let data = null;
         userRef.get().then((doc) => {
@@ -14,6 +14,9 @@ export class ProfileScreen extends Component {
             else {
                 console.log("Document doesn't exist!");
             }
+        })
+        .catch(error => {
+            console.log(error);
         });
         return (
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
