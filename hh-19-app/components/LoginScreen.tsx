@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Dimensions, Image, KeyboardAvoidingView } from 'react-native';
 import { AuthNavigator } from '../App'
 import { fb } from '../App'
 
@@ -16,17 +16,18 @@ export class LoginScreen extends Component {
 
     handleLogin() {
         fb.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => {
-            this.props.navigation.navigate('MainApp');
-        })
-        .catch(error => {
-            alert("Login failed!");
-        });
+            .then(() => {
+                this.props.navigation.navigate('MainApp');
+            })
+            .catch(error => {
+                alert("Login failed!");
+            });
     }
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <KeyboardAvoidingView style={{ flex: 1, justifyContent: "center", alignItems: "center" }} behavior="padding" enabled>
+                <Image source={require('../assets/foodlogo.png')} style={{ width: 300, height: 300, marginBottom: 50 }} />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
@@ -50,31 +51,31 @@ export class LoginScreen extends Component {
                     title="Login"
                     onPress={this.handleLogin.bind(this)}
                 />
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     input: {
-      backgroundColor: 'lightgray',
-      width: Dimensions.get('window').width - 40,
-      height: 40,
-      marginHorizontal: 20,
-      paddingLeft: 45,
-      marginBottom: 20,
-      borderRadius: 20,
-      color: 'gray',
+        backgroundColor: 'lightgray',
+        width: Dimensions.get('window').width - 40,
+        height: 40,
+        marginHorizontal: 20,
+        paddingLeft: 45,
+        marginBottom: 20,
+        borderRadius: 20,
+        color: 'gray',
     },
     inputWrapper: {
-      flex: 1,
+        flex: 1,
     },
     inlineImg: {
-      position: 'absolute',
-      zIndex: 99,
-      width: 22,
-      height: 22,
-      left: 35,
-      top: 9,
+        position: 'absolute',
+        zIndex: 99,
+        width: 22,
+        height: 22,
+        left: 35,
+        top: 9,
     },
 });
