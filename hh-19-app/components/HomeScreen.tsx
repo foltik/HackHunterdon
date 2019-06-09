@@ -27,7 +27,7 @@ export class HomeScreen extends Component {
           <FlatList
             data={this.state.data}
             renderItem={({ item }) =>
-              <Text>{item.name}</Text>
+              <Card><Text>{item.name}</Text></Card>
             }
           />
         </Card>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Card } from 'react-native-elements'
+import { SafeAreaView } from 'react-navigation';
 import { fb, uid } from '../App'
 
 export class ProfileScreen extends Component {
@@ -29,12 +30,15 @@ export class ProfileScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <Card><Text>Name: {this.state.name}</Text></Card>
-                <Card><Text>Age: {this.state.age}</Text></Card>
-                <Card><Text>Sex: {this.state.sex}</Text></Card>
-                <Card><Text>Weight: {this.state.weight}</Text></Card>
-            </View>
+            <SafeAreaView style={{ flex: 1, justifyContent: "center"}} behavior="padding" enabled>
+                <Image source={require('../assets/profile.jpg')} style={{ width: 200, height: 200, marginBottom: 50, alignSelf: "center" }} />
+                <View>
+                <Card><Text style={{marginBottom: 0, marginTop: 0}}>Name: {this.state.name}</Text></Card>
+                <Card><Text style={{marginBottom: 0, marginTop: 0}}>Age: {this.state.age}</Text></Card>
+                <Card><Text style={{marginBottom: 0, marginTop: 0}}>Sex: {this.state.sex}</Text></Card>
+                <Card><Text style={{marginBottom: 0, marginTop: 0}}>Weight: {this.state.weight}</Text></Card>
+                </View>
+            </SafeAreaView>
         );
     }
 }
