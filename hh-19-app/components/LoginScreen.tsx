@@ -12,17 +12,14 @@ export class LoginScreen extends Component {
     state = {
         email: "",
         password: "",
-        login: false,
     }
 
     handleLogin() {
-        this.setState({ login: true });
         fb.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
             this.props.navigation.navigate('MainApp');
         })
         .catch(error => {
-            this.setState({ login: false })
             alert("Login failed!");
         });
     }

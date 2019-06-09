@@ -21,7 +21,18 @@ const firebaseConfig = {
 };
 
 export let fb = firebase.initializeApp(firebaseConfig);
-//module.exports.fb = FbApp;
+
+export let uid = null;
+
+fb.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User logged in already or has just logged in.
+    uid = user.uid;
+  } else {
+    // User not logged in or has just logged out.
+    uid = null;
+  }
+});
 
 const MainNavigator = createBottomTabNavigator(
   {
