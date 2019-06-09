@@ -6,15 +6,18 @@
         <script src="index.js" defer></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.12/dc.css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
          body {
+             margin: 0;
+             padding: 0;
              font-family: 'Roboto', sans-serif;
              background-color: #f5ffff;
          }
          #container {
              display: grid;
-             grid-template-columns: 1fr 10fr;
-             grid-template-rows: 1fr 10fr;
+             grid-template-columns: 1fr 6fr;
+             grid-template-rows: 1fr 13fr;
              padding: 0px;
              margin: 0px;
              width: 100%;
@@ -46,14 +49,58 @@
              from {transform: translateY(-100px)}
              to {transform: translateY(0)}
          }
+
+         .entry {
+             display: flex;
+             flex-direction: row;
+             padding: 20px;
+             font-weight: light;
+             color: #eee;
+             cursor: pointer;
+         }
+
+         .entry i {
+             margin-right: 10px;
+         }
+
+         .top {
+             display: flex;
+             flex-direction: row;
+             justify-content: flex-end;
+             padding-top: 20px;
+             font-size: 24px;
+             background-color: #444;
+             color: #fff;
+         }
+
+         .top i {
+             margin-right: 10px;
+         }
+
+         .top div {
+             margin-right: 40px;
+         }
         </style>
     </head>
     <body>
         <div id="container">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>
+            <div style="background-color: #333; border-bottom: 2px solid #444;">
+                <h2 style="color: #fff; margin-left: 30px;">Nutrition</h2>
+            </div>
+            <div class="top">
+                <div style="margin-right: auto;display: flex; flex-direction: row;"><p style="margin: 0 10px 0 30px">Analytics</p><i class="fa fa-caret-right"></i></div>
+                <div><i class="fa fa-user"></i><i class="fa fa-angle-down"></i></div>
+                <div><i class="fa fa-cog"></i><i class="fa fa-angle-down"></i></div>
+                <div><i class="fa fa-server"></i><i class="fa fa-angle-down"></i></div>
+                <div><i class="fa fa-envelope"></i><i class="fa fa-angle-down"></i></div>
+            </div>
+            <div style="background-color: #333;display: flex; flex-direction: column;">
+                <div class="entry"><i class="fa fa-home"></i>Home</div>
+                <div class="entry"><i class="fa fa-building"></i>Organization</div>
+                <div class="entry"><i class="fa fa-users"></i>People</div>
+                <div class="entry" style="background-color: #444;"><i class="fa fa-tachometer"></i>Analytics</div>
+            </div>
+            <div style="">
                 <div class="horizontal">
                     <div id="age" style="animation-delay: 0s"></div>
                     <div id="weight-height" style="animation-delay: 0.15s"></div>
